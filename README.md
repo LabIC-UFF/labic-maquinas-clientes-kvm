@@ -146,3 +146,13 @@ No momento, estamos evitando passthrough e utilizando nativamente as GPUs, para 
 Algumas dicas, caso queira tentar:
 - https://github.com/lateralblast/kvm-nvidia-passthrough
 
+### Dicas extras
+
+#### Para configurar SSH no cliente
+
+- adicionar linha em `/etc/ssh/sshd_config`
+   * `PubkeyAcceptedKeyTypes=+ssh-rsa`
+   * Fonte: https://bbs.archlinux.org/viewtopic.php?id=270005
+   * Problema verificado com log: `cat /var/log/auth.log`
+      - `userauth_pubkey: key type ssh-rsa not in PubkeyAcceptedAlgorithms [preauth]`
+
