@@ -26,8 +26,9 @@
 ### Base Técnica
 Para essa parte, considere os três textos de referência:
 - https://multipass.run/docs/using-libvirt
-- https://hackernoon.com/understanding-ufw-8d70d5d8f9d2
-- https://www.cyberciti.biz/faq/kvm-forward-ports-to-guests-vm-with-ufw-on-linux/
+- https://www.arubacloud.com/tutorial/how-to-manage-and-forward-ports-with-ufw-on-ubuntu-18-04.aspx
+- FUNDAMENTAL: https://hackernoon.com/understanding-ufw-8d70d5d8f9d2
+- FUNDAMENTAL: https://www.cyberciti.biz/faq/kvm-forward-ports-to-guests-vm-with-ufw-on-linux/
 
 ### Parte 1/3: configurando Multipass com libvirt
 
@@ -63,9 +64,9 @@ Para essa parte, considere os três textos de referência:
 
 ### Parte 2/3: lançando a VM personalizada com NFS+LDAP
 
-1. Monte o `/home` via NFS na hospedeira
-   * Edite: `/etc/fstab`
-   * ...
+1. Monte o `/home` via NFS do servidor `192.168.91.2` na hospedeira
+   * Edite `/etc/fstab` e adicione:
+      - > 192.168.91.2:/home                          /home           nfs     soft,intr,async,cto,bg,auto,retry=2
    * `mount /home`
 1. Copie a chave SSH pública do multipass para o usuário `ubuntu` (padrão de todas VMs)
    * `ssh-keygen -y -f /var/snap/multipass/common/data/multipassd/ssh-keys/id_rsa >> my_id_rsa.pub`
@@ -133,6 +134,15 @@ Para essa parte, considere os três textos de referência:
     * Deveria cair dentro da VM convidada no hospedeiro
     * Caso não funcione, volte ao hospedeiro e confira as operações
         - `ssh root@hospedeiro` (cenário básico que deveria estar funcionando)
+    * Verifique mais detalhes em: https://www.cyberciti.biz/faq/kvm-forward-ports-to-guests-vm-with-ufw-on-linux/
 1. Parabéns! A VM está acessível externamente!
 
-### Parte 4: ...
+### Parte 4: configurando passthrough do driver NVIDIA para VM convidada
+
+TODO.
+
+No momento, estamos evitando passthrough e utilizando nativamente as GPUs, para evitar (MAIS) problemas. Mas é possível aparentemente.
+
+Algumas dicas, caso queira tentar:
+- https://github.com/lateralblast/kvm-nvidia-passthrough
+

@@ -1,0 +1,43 @@
+#cloud-config
+# https://github.com/eucalyptus/recipes/blob/master/cloud-init/cloud-init-openldap.config
+apt_update: true
+apt_upgrade: true
+disable_root: true
+cloud_config_modules:
+ - mounts
+ - ssh
+ - [ apt-update-upgrade, always ]
+ - updates-check
+ - runcmd
+packages:
+ - sudo
+ - nfs-common
+ - figlet
+ - libnss-ldap
+ - libpam-ldap
+ - ldap-utils
+ - python3-pip
+ - make
+ - locate
+
+write_files:
+  - path: /root/test.sh
+    content: |
+        #!/bin/bash
+        set -x
+        set -e
+        whoami
+runcmd:
+ - bash /root/test.sh
+ - updatedb
+ - figlet "LABIC   IC/UFF" | sudo tee /etc/issue
+ - echo "                    Universidade Federal Fluminense" | sudo tee -a /etc/issue
+ - echo "                        Instituto de Computacao" | sudo tee -a /etc/issue
+ - echo "                 Laboratorio de Inteligencia Computacional" | sudo tee -a /etc/issue
+ - echo "" | sudo tee -a /etc/issue
+ - sudo sed -i 's/\\/\\\\/g' /etc/issue
+ - echo -n | sudo tee /etc/issue.net
+
+mounts:
+ #- [ ephemeral0, /opt/openldap, auto, "defaults,noexec" ]
+ - [ 192.168.91.2:/home,  /home , nfs , "soft,intr,async,cto,bg,auto,retry=2" ]

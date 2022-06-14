@@ -1,0 +1,2 @@
+# LABIC user's home
+192.168.88.51:/home                          /home           nfs     soft,intr,async,cto,bg,auto,retry=2
