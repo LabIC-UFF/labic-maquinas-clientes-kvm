@@ -9,7 +9,7 @@ cloud_config_modules:
  - [ apt-update-upgrade, always ]
  - updates-check
  - runcmd
-# DEBIAN_FRONTEND=noninteractive apt-get -y install sudo nfs-common figlet libnss-ldap libpam-ldap ldap-utils python3-pip python3-venv make locate
+# DEBIAN_FRONTEND=noninteractive apt-get -y install sudo nfs-common figlet libnss-ldap libpam-ldap ldap-utils python3-pip python3-venv python3-virtualenv make locate
 packages:
  - sudo
  - nfs-common
@@ -19,6 +19,7 @@ packages:
  - ldap-utils
  - python3-pip
  - python3-venv
+ - python3-virtualenv
  - make
  - locate
 write_files:
