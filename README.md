@@ -12,7 +12,8 @@
    * `passwd`
 1. Configure o SSH para acesso remoto de root
    * Edite: `/etc/ssh/sshd_config`
-      -  Modifique: `#PermitRootLogin prohibit-password` para `PermitRootLogin yes`
+      - Modifique: `#PermitRootLogin prohibit-password` para `PermitRootLogin yes`
+      - Adicione:  `PubkeyAcceptedKeyTypes=+ssh-rsa`
 1. Instale os drivers da NVIDIA através do ubuntu
    * `sudo ubuntu-drivers install nvidia`
 1. Execute o comando `nvidia-smi`
