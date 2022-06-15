@@ -17,7 +17,10 @@
 1. Instale os drivers da NVIDIA através do ubuntu
    * `sudo ubuntu-drivers install nvidia`
 1. Execute o comando `nvidia-smi`
-   * Caso não funcione, reinicie, e tente novamente. Só continue quando funcionar.
+   * Verifique versão do driver e versão suportada do CUDA!
+      - **IMPORTANTE:** nunca tente instalar CUDA **via apt** ACIMA da versão informada... se for o caso, faça instalação MANUAL via .bin
+      - Confira a tabela de compatibilidade de driver com versão cuda: https://docs.nvidia.com/deploy/cuda-compatibility/index.html
+   * Caso `nvidia-smi` não funcione, reinicie, e tente novamente. Só continue quando funcionar.
 
 
 ## Parte 1-3: Configuração Multipass + libvirt + ufw + port forwarding
