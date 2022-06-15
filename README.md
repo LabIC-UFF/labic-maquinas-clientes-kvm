@@ -156,3 +156,33 @@ Algumas dicas, caso queira tentar:
    * Problema verificado com log: `cat /var/log/auth.log`
       - `userauth_pubkey: key type ssh-rsa not in PubkeyAcceptedAlgorithms [preauth]`
 
+#### Dica CUDA - Ubuntu 22.04
+
+Verifique a versão suportada pelo driver NVIDIA:
+
+   > nvidia-smi
+
+Embora CUDA 11.7 seja o mais novo, o driver nativo do Ubuntu 22.04 vem com driver 510 / CUDA 11.6.
+
+Seguir instalação via apt quebrará o sistema muito provavelmente para um CUDA acima!
+
+Então, faça o download e instalação manual do .bin: `cuda_11.7.0_515.43.04_linux.run`  (NÃO instale o driver!)
+
+Verifique a compatibilidade do driver com o CUDA... driver 510 com CUDA 11.7 está ok: https://docs.nvidia.com/deploy/cuda-compatibility/index.html
+
+#### CUDA HPC Toolkit (CUDA 11.7)
+
+> echo 'deb [trusted=yes] https://developer.download.nvidia.com/hpc-sdk/ubuntu/amd64 /' | sudo tee /etc/apt/sources.list.d/nvhpc.list
+> sudo apt-get update -y
+> sudo apt-get install -y nvhpc-22-5
+
+
+#### CUDA via apt
+
+CUDA (11.7) via apt (somente se nvidia-smi tiver suporte a CUDA 11.7):
+
+   > wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
+   > sudo mv cuda-ubuntu2204.pin /etc/apt/preferences.d/cuda-repository-pin-600
+   > sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/3bf863cc.pub
+   > sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/ /"
+   > sudo apt-get updatesudo apt-get -y install cuda

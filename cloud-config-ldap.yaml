@@ -9,6 +9,7 @@ cloud_config_modules:
  - [ apt-update-upgrade, always ]
  - updates-check
  - runcmd
+# DEBIAN_FRONTEND=noninteractive apt-get -y install sudo nfs-common figlet libnss-ldap libpam-ldap ldap-utils python3-pip make locate
 packages:
  - sudo
  - nfs-common
@@ -19,7 +20,6 @@ packages:
  - python3-pip
  - make
  - locate
-
 write_files:
   - path: /root/test.sh
     content: |
