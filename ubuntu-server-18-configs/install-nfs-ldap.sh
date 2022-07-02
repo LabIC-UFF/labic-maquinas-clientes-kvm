@@ -17,7 +17,10 @@ echo "configuring /home mount via NFS (setup on /etc/fstab), do not repeat this 
 cat fstab2 >> /etc/fstab
 mount /home
 
-DEBIAN_FRONTEND=noninteractive apt-get -y install libnss-ldap libpam-ldap ldap-utils sudo-ldap
+# NEW
+DEBIAN_FRONTEND=noninteractive apt-get -y install sudo nfs-common figlet libnss-ldap libpam-ldap ldap-utils python3-pip python3-virtualenv make locate
+# OLD
+DEBIAN_FRONTEND=noninteractive apt-get -y install libnss-ldap libpam-ldap ldap-utils #sudo-ldap
 
 echo "configuring /etc/ldap.conf"
 mv /etc/ldap.conf /etc/ldap.conf.bkp
@@ -33,7 +36,7 @@ cp pam-d-common-password.base /etc/pam.d/common-password
 
 echo ""
 echo "testing connection to LDAP server (should return few responses)"
-ldapsearch -H ldap://192.168.88.51 -b dc=LABIC -x | tail
+ldapsearch -H ldap://192.168.91.2 -b dc=LABIC -x | tail
 
 echo ""
 echo "trying to authenticate remote user imcoelho (hope next line is not empty)"

@@ -20,9 +20,18 @@ echo >> /etc/issue
 sed -i 's/\\/\\\\/g' /etc/issue
 echo -n > /etc/issue.net
 
-echo "configuring ssh with banner and UsePAM=no, to be faster"
-mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bkp
-cp sshd_config.base /etc/ssh/sshd_config
+echo "configuring ssh with banner and UsePAM=no, to be faster (DISABLED)"
+#mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bkp
+#cp sshd_config.base /etc/ssh/sshd_config
+echo "Please, manually add to /etc/ssh/sshd_config"
+echo "#==========================================="
+echo "PermitRootLogin yes"
+echo "PubkeyAcceptedKeyTypes=+ssh-rsa"
+echo "# no default banner path"
+echo "#Banner none"
+echo "Banner /etc/issue"
+echo "#==========================================="
+
 
 echo "restarting ssh server"
 service ssh restart
