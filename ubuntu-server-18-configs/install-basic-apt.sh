@@ -12,7 +12,7 @@ fi
 
 apt -y install linux-headers-$(uname -r) apt-file vim rsync figlet build-essential htop hwloc acpid mpich mpich-doc bison flex git ethtool gnuplot tree python-minimal 
 apt -y install freeglut3-dev libx11-dev libxmu-dev libxi-dev libglu1-mesa libglu1-mesa-dev openssl g++ default-jre resolvconf
-apt -y install python3-pip clang clangd clang-format clang-tidy clang-tools libc++-dev
+apt -y install python3-pip clang clangd clang-format clang-tidy clang-tools libc++-dev ninja-build
 
 snap install cmake --classic                           # latest cmake is needed by some applications
 apt -y install libncurses5-dev libncursesw5-dev # good for	nvidia nvtop builds
